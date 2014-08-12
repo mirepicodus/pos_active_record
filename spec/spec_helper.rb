@@ -6,6 +6,8 @@ require './lib/cashier'
 require './lib/customer'
 require './lib/inventory'
 require './lib/purchase'
+require './lib/receipt'
+
 
 
 database_configurations = YAML::load(File.open('./db/config.yml'))
