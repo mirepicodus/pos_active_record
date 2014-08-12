@@ -1,1 +1,1 @@
-Hi this is a readme file!!!!!!!!!
+POS active directory exercise.  Not finished yet.
