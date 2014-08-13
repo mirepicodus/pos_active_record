@@ -5,6 +5,8 @@ class CreatePurchases < ActiveRecord::Migration
       t.belongs_to :inventory
       t.belongs_to :customer
       t.belongs_to :cashier
+      t.belongs_to :receipt
+      t.timestamps
     end
   end
 end

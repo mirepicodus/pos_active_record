@@ -32,12 +32,13 @@ ActiveRecord::Schema.define(version: 20140812231737) do
   end
 
   create_table "purchases", force: true do |t|
+    t.datetime "date"
     t.integer  "inventory_id"
     t.integer  "customer_id"
     t.integer  "cashier_id"
+    t.integer  "receipt_id"
     t.datetime "created_at"
     t.datetime "updated_at"
-    t.integer  "receipt_id"
   end
 
   create_table "receipts", force: true do |t|

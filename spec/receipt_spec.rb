@@ -1,26 +1,18 @@
 require 'spec_helper'
 
 describe Receipt do
-  it "has many purchases" do
-    test_cashier = Cashier.create({:name => "Bob"})
-    test_inventory = Inventory.create({:name => "shoes", :price => 25.50})
-    test_customer = Customer.create({:name => "Bobby Jr"})
-    test_receipt = Receipt.create
-    test_purchase = Purchase.create({:cashier_id => test_cashier.id, :inventory_id => test_inventory.id, :customer_id => test_customer.id, :receipt_id => test_receipt.id})
-    expect(test_cashier.purchases).to eq Purchase.all
+  describe 'total' do
+  it "returns total by receipt number" do
+      test_inventory1 = Inventory.create({:name => "shoes", :price => 45.50})
+      test_inventory2 = Inventory.create({:name => "jacket", :price => 65.00})
+      test_inventory3 = Inventory.create({:name => "hat", :price => 25.00})
+      test_receipt1 = Receipt.create
+      test_receipt2 = Receipt.create
+      test_purchase = Purchase.create({:inventory_id => test_inventory1.id, :receipt_id => test_receipt1.id})
+      test_purchase = Purchase.create({:inventory_id => test_inventory2.id, :receipt_id => test_receipt1.id})
+      test_purchase = Purchase.create({:inventory_id => test_inventory3.id, :receipt_id => test_receipt2.id})
+      expect(test_receipt1.total).to eq 110.50
+    end
   end
-  it "has many inventories (via the purchases)" do
-    test_cashier = Cashier.create({:name => "Bob"})
-    test_inventory = Inventory.create({:name => "shoes", :price => 25.50})
-    test_customer = Customer.create({:name => "Bobby Jr"})
-    test_purchase = Purchase.create({:cashier_id => test_cashier.id, :inventory_id => test_inventory.id, :customer_id => test_customer.id})
-    expect(test_cashier.inventories).to eq Inventory.all
-  end
-  it "has many customers (via the purchases)" do
-    test_cashier = Cashier.create({:name => "Bob"})
-    test_inventory = Inventory.create({:name => "shoes", :price => 25.50})
-    test_customer = Customer.create({:name => "Bobby Jr"})
-    test_purchase = Purchase.create({:cashier_id => test_cashier.id, :inventory_id => test_inventory.id, :customer_id => test_customer.id})
-    expect(test_cashier.customers).to eq Customer.all
-  end
+
 end
